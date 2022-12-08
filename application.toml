@@ -1,0 +1,37 @@
+#环境。dev-开发环境,test-测试环境, product-生产环境
+env = "dev"
+
+# web服务器相关配置
+[server]
+# 服务器地址
+address = "0.0.0.0"
+# 服务器端口
+port = "8081"
+# 服务器名
+name = "itoobao_web"
+
+#mysql相关配置
+[mysql.master]
+host = "127.0.0.1"
+port = "3306"
+username = "root"
+password = ""
+database = ""
+
+#redis相关配置
+[redis]
+host = "127.0.0.1"
+port = 6379
+
+#log相关配置
+[log]
+#日志文件存放目录
+dir = "target/logs/"
+#日志分割尺寸-单位KB,MB,GB
+size = "100MB"
+#日志打包格式可选“”（空-不压缩）“gzip”（gz压缩包）“zip”（zip压缩包）“lz4”（lz4压缩包（非常快））
+pack_compress = "zip"
+#日志滚动保留-保留全部: All,按时间保留(秒): KeepTime(i64),按版本保留: KeepNum(i64)
+rolling_type = "KeepNum(20)"
+#日志等级-info,error,warn,debug,trace
+level = "info"

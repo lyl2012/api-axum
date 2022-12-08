@@ -1,0 +1,7 @@
+[workspace]
+resolver = "2"
+members = [
+    "itoo_web",
+    "itoo_config",
+    "itoo_redis"
+]
