@@ -24,6 +24,9 @@ pub enum AppError {
 
     #[error(transparent)]
     RedisError(#[from] itoo_redis::Error),
+
+    #[error(transparent)]
+    UtilsError(#[from] itoo_utils::Error),
 }
 
 impl From<BusinessError> for AppError {
@@ -40,6 +43,7 @@ impl IntoResponse for AppError {
                 AppResponse::err(e as i32, e.to_string().clone())
             }
             Self::RedisError(e) => AppResponse::err(0, e.to_string()),
+            Self::UtilsError(e) => AppResponse::err(0, e.to_string()),
         };
         axum::Json(data).into_response()
     }
