@@ -1,23 +1,17 @@
-use axum::{routing::get, Router};
-use itoo_config::ApplicationConfig;
-use itoo_redis::Redis;
-
 use crate::config::response::AppResponse;
 use crate::{AppResult, CONTEXT_MANAGER};
+use axum::{routing::get, Router};
+use itoo_config::ApplicationConfig;
+use itoo_redis::Commands;
+use itoo_redis::RedisPool;
 
 pub(crate) async fn user_test() -> AppResult<String> {
-    return demo_sign();
-    let redis = CONTEXT_MANAGER.get::<Redis>();
-    redis.set("test", "this is a test")?;
-    let cache: Option<String> = match redis.get("testa") {
-        Ok(s) => s,
-        Err(_) => None,
-    };
-    if cache.is_none() {
-        //不存在
-        return Ok(AppResponse::ok("不存在".to_string()));
-    }
-    Ok(AppResponse::ok(cache.unwrap()))
+    //return demo_sign();
+    let redis = CONTEXT_MANAGER.get::<RedisPool>();
+    let mut conn = redis.connection()?;
+    let cache: Option<String> = conn.get("testa")?;
+
+    Ok(AppResponse::ok(cache))
 }
 
 fn demo_sign() -> AppResult<String> {

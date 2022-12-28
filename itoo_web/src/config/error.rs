@@ -27,6 +27,8 @@ pub enum AppError {
 
     #[error(transparent)]
     UtilsError(#[from] itoo_utils::Error),
+    // #[error(transparent)]
+    // RedisErrors(#[from] itoo_redis::RedisError),
 }
 
 impl From<BusinessError> for AppError {

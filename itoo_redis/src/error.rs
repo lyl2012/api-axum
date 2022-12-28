@@ -6,4 +6,7 @@ pub enum Error {
 
     #[error(transparent)]
     ConnError(#[from] redis::RedisError),
+
+    #[error("配置错误")]
+    ConfigError,
 }

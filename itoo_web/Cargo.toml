@@ -18,7 +18,6 @@ thiserror = "1"
 
 #序列化
 serde = { version = "1", features = ["derive"] }
-
 #配置
 itoo_config = {path="../itoo_config"}
 itoo_redis = {path = "../itoo_redis"}
